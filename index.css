@@ -1,0 +1,93 @@
+:root {
+    --dark-color: #1B1924;
+    --gray-color: #444059;
+    --white-color: #FFFFFF;
+    --gray-text-color: #8F8F8F;
+    --blue-color: #28A9F1;
+    --button-text-color: #04131C;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--dark-color);
+    color: var(--white-color);
+    font-family: "Josefin Sans", sans-serif;
+    user-select: none;
+}
+
+.container {
+    max-width: 390px;
+    margin: 30px auto;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.container img {
+    width: 90px;
+    margin-top: 50px;
+}
+
+.container h1 {
+    font-size: 1.5rem;
+}
+
+.container textarea {
+    width: 320px;
+    height: 120px;
+    padding: 15px;
+    background-color: var(--gray-color);
+    color: var(--gray-text-color);
+    font-family: "Inter", sans-serif;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+}
+
+.container textarea:focus {
+    outline: none;
+}
+
+.container button {
+    width: 320px;
+    height: 60px;
+    background-color: var(--blue-color);
+    color: var(--button-text-color);
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.container ul {
+    list-style: none;
+    width: 320px;
+}
+
+.container ul li {
+    font-size: 1.1rem;
+    padding: 15px;
+    color: var(--dark-color);
+    background-color: var(--white-color);
+}
+
+.container ul li:not(:last-child) {
+    margin-bottom: 15px;
+}
+
+.container ul .empty-list {
+    background-color: var(--gray-color);
+    color: var(--gray-text-color);
+    text-align: center;
+    font-weight: bold;
+}
