@@ -78,6 +78,6 @@ LinkedIn: [jarabialex](https://www.linkedin.com/in/jarabialex/)
 
 Email: jarabialex@gmail.com
 
-Project Link: https://github.com/Jarabi/we-are-the-champions
+Project Link: https://jarabi.github.io/we-are-the-champions/
 
 
