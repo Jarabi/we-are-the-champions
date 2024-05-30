@@ -44,12 +44,7 @@ endorseBtn.addEventListener('click', function () {
 // Listen for changes in the database
 onValue(endorsementListInDB, function (snapshot) {
     if (snapshot.exists()) {
-        const data = Object.entries(snapshot.val());
-
-        // Sort the data by date
-        data.sort((a, b) => {
-            return new Date(b[1].created) - new Date(a[1].created);
-        });
+        const data = sortEndorsementsByDate(Object.entries(snapshot.val()));
 
         clearEndorsementListEl();
 
@@ -62,6 +57,17 @@ onValue(endorsementListInDB, function (snapshot) {
             "<li class='empty-list'>No endorsements yet</li>";
     }
 });
+
+/**
+ * Function to sort endorsements by date
+ * @param {array} endorsements
+ * @returns {array}
+ */
+function sortEndorsementsByDate(endorsements) {
+    return endorsements.sort((a, b) => {
+        return new Date(b[1].created) - new Date(a[1].created);
+    });
+}
 
 /**
  * Function to clear the endorsement list
