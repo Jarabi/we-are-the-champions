@@ -23,7 +23,7 @@ body {
 .container {
     max-width: 390px;
     margin: 30px auto;
-    padding: 0 15px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -52,7 +52,27 @@ body {
     border-radius: 8px;
 }
 
-.container textarea:focus {
+.container #from-to {
+    width: 320px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container #from-to input {
+    width: 150px;
+    height: 40px;
+    padding: 10px;
+    background-color: var(--gray-color);
+    color: var(--gray-text-color);
+    font-family: "Inter", sans-serif;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.container textarea:focus,
+.container #from-to input:focus {
     outline: none;
 }
 
@@ -70,6 +90,8 @@ body {
 }
 
 .container ul {
+    font-family: 'Inter', sans-serif;
+    font-weight: normal;
     list-style: none;
     width: 320px;
 }
@@ -79,6 +101,23 @@ body {
     padding: 15px;
     color: var(--dark-color);
     background-color: var(--white-color);
+    border-radius: 3px;
+}
+
+.container ul li h3 {
+    font-size: .9rem;
+}
+
+.container ul li p {
+    font-size: 1rem;
+    font-weight: 400;
+    padding: 10px 0;
+}
+
+.container ul li h3 span {
+    font-size: .7rem;
+    font-weight: 300;
+    color: var(--gray-color);
 }
 
 .container ul li:not(:last-child) {
