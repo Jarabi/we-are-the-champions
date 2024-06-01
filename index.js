@@ -4,6 +4,8 @@ import {
     ref,
     push,
     onValue,
+    get,
+    update,
 } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 
 const appSettings = {
@@ -33,11 +35,19 @@ endorseBtn.addEventListener('click', function () {
             from: fromText,
             to: toText,
             text: endorsementText,
+            likes: Math.floor(Math.random() * 10) + 1,
+            liked: false,
             created: moment().format(),
         };
 
-        push(endorsementListInDB, endorsement);
-        clearInputFields();
+        push(endorsementListInDB, endorsement)
+            .then(() => {
+                clearInputFields();
+                // console.log('Endorsement added successfully');
+            })
+            .catch((error) => {
+                console.error('Error adding endorsement: ', error);
+            });
     }
 });
 
@@ -88,23 +98,101 @@ const clearInputFields = () => {
 };
 
 /**
+ * Function to update endorsement list
  * @param {array} endorsement
  * @returns {void}
  */
 const updateEndorsementListEl = (endorsement) => {
-    let [endorsementID, { from, to, text, created }] = endorsement;
+    let [endorsementID, { from, to, text, likes, liked, created }] =
+        endorsement;
     const date = getDate(created);
 
     const listEl = document.createElement('li');
-
     listEl.id = endorsementID;
-    listEl.innerHTML = `
-        <h3>To ${to}</h3>
-        <p>${text}</p>
-        <h3>From ${from} &middot; <span>${date}</span></h3>
-    `;
+
+    // Create and append 'To' element
+    const toEl = createElement('h3', `To ${to}`);
+    listEl.appendChild(toEl);
+
+    // Create and append 'Text' element
+    const textEl = createElement('p', text);
+    listEl.appendChild(textEl);
+
+    // Div element
+    const divEl = document.createElement('div');
+
+    // Create and append 'From' element
+    const fromEl = createElement('h3', `From ${from} \u00B7 `);
+    divEl.appendChild(fromEl);
+
+    // Create and append 'Date' element
+    const dateEl = createElement('span', date);
+    fromEl.appendChild(dateEl);
+
+    // Create and append 'Likes' element
+    const likesEl = document.createElement('span');
+    likesEl.dataset.id = endorsementID;
+    likesEl.dataset.liked = liked;
+    likesEl.className = 'likes';
+    likesEl.textContent = `🖤 ${likes}`;
+    likesEl.addEventListener('click', updateLikes);
+    divEl.appendChild(likesEl);
+
+    listEl.appendChild(divEl);
     endorsementListEl.appendChild(listEl);
 };
+
+/**
+ * Function to create HTML element
+ * @param {String} tag
+ * @param {string} content
+ * @returns {element}
+ */
+function createElement(tag, content) {
+    const element = document.createElement(tag);
+    element.textContent = content;
+
+    return element;
+}
+
+/**
+ * Function to update likes
+ * @returns {void}
+ */
+function updateLikes() {
+    const id = this.dataset.id;
+    const liked = this.dataset.liked === 'true'; // Convert to boolean
+    const endorsementRef = ref(database, `endorsements/${id}`);
+
+    // Get current value of endorsement
+    get(endorsementRef)
+        .then((snapshot) => {
+            if (snapshot.exists()) {
+                const endorsement = snapshot.val();
+
+                // Update the likes and liked status
+                endorsement.likes += liked ? -1 : 1;
+                endorsement.liked = !liked;
+
+                // Update the endorsement in the database
+                update(endorsementRef, {
+                    likes: endorsement.likes,
+                    liked: endorsement.liked,
+                })
+                    .then(() => {
+                        console.log('Likes updated successfully');
+                    })
+                    .catch((error) => {
+                        console.error('Error updating likes: ', error);
+                    });
+            } else {
+                console.log('No ndorsement not found with given ID');
+            }
+        })
+        .catch((error) => {
+            console.log('Error fetching endorsement:', error);
+        });
+}
 
 /**
  * Function to get the date
