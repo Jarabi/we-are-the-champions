@@ -64,7 +64,7 @@ onValue(endorsementListInDB, function (snapshot) {
         }
     } else {
         endorsementListEl.innerHTML =
-            "<li class='empty-list'>No endorsements yet</li>";
+            "<li class='empty-list'>No endorsements yet... 😔</li>";
     }
 });
 
