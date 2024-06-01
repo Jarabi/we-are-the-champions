@@ -24,7 +24,11 @@ Welcome to We Are The Champions! This is a progressive web app where users can p
 
 <img src="./assets/screenshot.png" width="400">
 
-Endoresement page
+Mobile version
+
+<img src="./assets/screenshot-desktop.png">
+
+Desktop version
 
 ### Technologies Used
 
