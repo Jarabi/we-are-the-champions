@@ -17,30 +17,39 @@ body {
     background-color: var(--dark-color);
     color: var(--white-color);
     font-family: "Josefin Sans", sans-serif;
-    /* user-select: none; */
 }
+
+/* +++ Container +++ */
 
 .container {
     max-width: 390px;
     margin: 30px auto;
     padding: 15px;
+}
+
+.container,
+.desktop-left,
+.desktop-left .logo,
+.desktop-left .user-input,
+.desktop-right {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 20px
 }
 
-.container img {
+/* +++ Desktop left +++ */
+
+.desktop-left .logo img {
     width: 90px;
-    margin-top: 50px;
 }
 
-.container h1 {
+.desktop-left .logo h1 {
     font-size: 1.5rem;
 }
 
-.container textarea {
+.desktop-left .user-input textarea {
     width: 320px;
     height: 120px;
     padding: 15px;
@@ -52,13 +61,13 @@ body {
     border-radius: 8px;
 }
 
-.container #from-to {
+.desktop-left .user-input #from-to {
     width: 320px;
     display: flex;
     justify-content: space-between;
 }
 
-.container #from-to input {
+.desktop-left .user-input #from-to input {
     width: 150px;
     height: 40px;
     padding: 10px;
@@ -71,12 +80,7 @@ body {
     text-align: center;
 }
 
-.container textarea:focus,
-.container #from-to input:focus {
-    outline: none;
-}
-
-.container button {
+.desktop-left .user-input button {
     width: 320px;
     height: 60px;
     background-color: var(--blue-color);
@@ -89,14 +93,27 @@ body {
     cursor: pointer;
 }
 
-.container ul {
+textarea:focus,
+input:focus {
+    outline: none;
+}
+
+/* +++ Desktop right +++ */
+
+.desktop-right {
+    user-select: none;
+}
+
+.desktop-right ul {
     font-family: 'Inter', sans-serif;
     font-weight: normal;
     list-style: none;
     width: 320px;
+    max-height: 42vh;
+    overflow-y: auto;
 }
 
-.container ul li {
+.desktop-right ul li {
     font-size: 1.1rem;
     padding: 15px;
     color: var(--dark-color);
@@ -104,41 +121,114 @@ body {
     border-radius: 3px;
 }
 
-.container ul li h3 {
+.desktop-right ul li h3 {
     font-size: .9rem;
 }
 
-.container ul li p {
+.desktop-right ul li p {
     font-size: 1rem;
     font-weight: 400;
     padding: 10px 0;
 }
 
-.container ul li div {
+.desktop-right ul li div {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.container ul li div span.likes {
-    font-size: 1rem;
+.desktop-right ul li div span.likes {
+    font-size: .85rem;
     font-weight: 600;
     color: var(--dark-color);
+    cursor: pointer;
 }
 
-.container ul li h3 span {
+.desktop-right ul li h3 span {
     font-size: .7rem;
     font-weight: 300;
     color: var(--gray-color);
 }
 
-.container ul li:not(:last-child) {
+.desktop-right ul li:not(:last-child) {
     margin-bottom: 15px;
 }
 
-.container ul .empty-list {
+.desktop-right ul .empty-list {
     background-color: var(--gray-color);
     color: var(--gray-text-color);
     text-align: center;
     font-weight: bold;
+}
+
+/* +++ Media queries +++ */
+@media only screen and (min-width: 992px) {
+    /* Container */
+    .container {
+        max-width: 1200px;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: start;
+    }
+
+    .desktop-left,
+    .desktop-right {
+        width: 50%;
+        height: 100%;
+    }
+
+    /* Desktop left */
+
+    .desktop-left {
+        justify-content: center;
+        gap: 50px;
+    }
+
+    .desktop-left .logo img {
+        width: 150px;
+    }
+
+    .desktop-left .logo h1 {
+        font-size: 2rem;
+    }
+
+    .desktop-left .user-input textarea {
+        width: 450px;
+        height: 150px;
+        font-size: 1.2rem;
+    }
+    
+    .desktop-left .user-input #from-to {
+        width: 450px;
+    }
+    
+    .desktop-left .user-input #from-to input {
+        width: 220px;
+        height: 60px;
+        font-size: 1.2rem;
+        border: none;
+        text-align: center;
+    }
+    
+    .desktop-left .user-input button {
+        width: 450px;
+        height: 60px;
+    }
+
+    /* Desktop right */
+
+    .desktop-right {
+        justify-content: flex-start;
+        padding-top: 100px;
+        overflow-y: auto;
+    }
+
+    .desktop-right h2 {
+        font-size: 2.2rem;
+        margin-bottom: 20px;
+    }
+
+    .desktop-right ul {
+        width: 450px;
+    }
 }
