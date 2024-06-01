@@ -5,6 +5,7 @@ Welcome to We Are The Champions! This is a progressive web app where users can p
 ## Table of Contents
 
 1. [Features](#features)
+1. [Design](#design)
 1. [Screenshots](#screenshots)
 1. [Technologies Used](#technologies-used)
 1. [Installation](#installation)
@@ -19,6 +20,10 @@ Welcome to We Are The Champions! This is a progressive web app where users can p
 - **Progressive Web App**: Access the app on any device.
 - **Real-time Updates**: Enjoy real-time updates using Firebase.
 - **Responsive Design**: A seamless experience on both mobile and desktop.
+
+### Design
+
+You can see the figma design [here](https://www.figma.com/design/8zW6A6Qxql9MF5kZ855teO/We-are-the-Champions?node-id=0-1&t=CaLOCy3rdbE20g1O-0)
 
 ### Screenshots
 
